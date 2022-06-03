@@ -1,9 +1,12 @@
 <header>
-	<a href="/" class="home">Lorenzo Basso</a>
 	<nav>
+		<a href="/">Home</a>
 		<a href="/blog">Blog</a>
-		<a href="/projects">Projects</a>
-		<a href="/about">About me</a>
+		<a
+			href="https://github.com/lorenzobasso/lorenzobasso.github.io"
+			target="_blank"
+			rel="noopener noreferrer">GitHub</a
+		>
 	</nav>
 </header>
 <div class="spacer" />
@@ -11,10 +14,11 @@
 <style>
 	header {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
-		height: var(--header-height);
+		height: fit-content;
 		color: var(--st);
+		margin-top: 1rem;
 	}
 
 	a {
@@ -32,11 +36,6 @@
 
 	nav > a:hover {
 		text-decoration: underline;
-	}
-
-	.home {
-		font-size: 2rem;
-		font-weight: bold;
 	}
 
 	.spacer {
