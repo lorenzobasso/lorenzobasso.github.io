@@ -7,21 +7,26 @@
 	export let summary;
 </script>
 
-<section>
-	<h1>{title}</h1>
-    <div class="dates">
-	<div><small>CREATED: {written.split('T')[0]}</small></div>
-	<div><small>LAST MODIFIED: {modified.split('T')[0]}</small></div>
-</div>
-</section>
-
-<div class="divider" />
-
 <article>
+	<section>
+		<h1>{title}</h1>
+		<div class="dates">
+		<div><small>CREATED: {written.split('T')[0]}</small></div>
+		<div><small>LAST MODIFIED: {modified.split('T')[0]}</small></div>
+	</div>
+	</section>
+	
+	<div class="divider" />
+	
 	<slot />
 </article>
 
 <style>
+	article {
+		width: 50vw;
+		margin: 0 auto;
+	}
+
     section {
         text-align: center;
     }

@@ -3,7 +3,5 @@
 <style>
 	footer {
 		height: var(--footer-height);
-		position: absolute;
-		bottom: 1rem;
 	}
 </style>

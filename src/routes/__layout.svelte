@@ -11,3 +11,10 @@
 </main>
 
 <Footer />
+
+
+<style>
+	main {
+		min-height: calc(100vh - var(--footer-height) - 3rem - 2rem);
+	}
+</style>
