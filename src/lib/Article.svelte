@@ -14,9 +14,9 @@
 </article>
 
 <style>
-    article {
-        margin-bottom: 4rem;
-    }
+	article {
+		margin-bottom: 4rem;
+	}
 
 	a {
 		color: var(--st);
