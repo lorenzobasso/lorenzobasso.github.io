@@ -2,6 +2,7 @@
 	<nav>
 		<a href="/">Home</a>
 		<a href="/blog">Blog</a>
+		<a href="/talks">Talks</a>
 		<a
 			href="https://github.com/lorenzobasso/lorenzobasso.github.io"
 			target="_blank"
