@@ -3,5 +3,9 @@
 <style>
 	footer {
 		height: var(--footer-height);
+		width: 90%;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 16px;
 	}
 </style>

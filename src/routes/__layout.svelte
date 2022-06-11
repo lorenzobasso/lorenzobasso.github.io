@@ -14,6 +14,8 @@
 
 <style>
 	main {
-		min-height: calc(100vh - var(--footer-height) - 3rem - 2rem);
+		min-height: calc(100vh - var(--footer-height) - 3rem - 3rem);
+		width: 90%;
+		margin: 0 auto;
 	}
 </style>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Card from './Card.svelte';
+
 	import NewPageLink from './NewPageLink.svelte';
 	import type { TalkType } from './types';
 
@@ -6,7 +8,7 @@
 </script>
 
 {#if talk}
-	<article>
+	<Card>
 		<h3><NewPageLink href={talk.url}>{talk.title}</NewPageLink></h3>
 		<div>{talk.speaker}</div>
 		<div class="categories">
@@ -15,22 +17,10 @@
 			{/each}
 		</div>
 		<div class="summary">{talk.summary}</div>
-	</article>
+	</Card>
 {/if}
 
 <style>
-	article {
-		box-shadow: 6px 6px 6px black;
-		padding: 1rem;
-		margin: 1rem;
-		border-radius: 1rem;
-		border: 1px solid var(--sd);
-	}
-
-	article:hover {
-		box-shadow: 6px 6px 6px var(--p);
-	}
-
 	h3 {
 		margin: 0 0 0.25rem;
 	}
