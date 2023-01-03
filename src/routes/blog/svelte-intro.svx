@@ -1,0 +1,43 @@
+---
+title: N + 1, or how I learned to stop worrying and love yet another framework
+written: 2022-06-10
+modified: 2022-06-10
+author: Lorenzo Basso
+---
+
+<script>
+    import NewPageLink from "$lib/NewPageLink.svelte";
+</script>
+
+<aside>
+Watch the story behind the <NewPageLink href="https://www.youtube.com/watch?v=6mMK6iSZsAs">guidance module</NewPageLink>
+for the Saturn V
+</aside>
+
+In the beginning there was a rock.
+A rock and the engineers that trapped lighting within it and tricked into thinking.
+And so the computer was born <a href="#ref-1">[1]</a>.
+
+Those were the days [real programmers](https://www.pbm.com/~lindahl/mel.html) wrote their programs directly in machine code, punching each bit in an endless stack of paper cards.
+Engineers hand wove memory into a delicate mesh of metal rings, each one storing a single bit.
+Debugging you say? A slow, tedious, painful process that took weeks to find a bug. Okay... maybe in some ways that's still true...
+
+Then Assembly language was invented. It allowed programmers to use the alphabet!
+Oh sure, hex calculators were still needed.
+People still used hardware switches to step through their program instruction by instruction.
+But now they could actually READ their code, and print it out.
+
+Soon people realised that porting programs to different machines would be quite useful.
+It was at that time that the first high level languages were invented.
+Abstracting the underlying assembly, they allowed to write []()
+
+<footer>
+    <p id="ref-1"><NewPageLink href="https://twitter.com/daisyowl/status/841802094361235456">[1] https://twitter.com/daisyowl/status/841802094361235456</NewPageLink></p>
+<footer>
+
+<style>
+    footer {
+        font-size: 0.85rem;
+        border-top: 1px solid var(--sl);
+    }
+</style>

@@ -10,5 +10,13 @@
 	Some nice article
 </Article>
 
+<Article
+	href="/blog/svelte-intro"
+	title="N + 1, or how I learned to stop worrying and love yet another framework"
+	subtitle="Written on 2022-06-10 by Lorenzo Basso"
+>
+	Some nice article
+</Article>
+
 <style>
 </style>

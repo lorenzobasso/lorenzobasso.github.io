@@ -1,0 +1,417 @@
+---
+title: A whirlwind tour of Svelte
+written: 2022-06-03
+modified: 2022-06-03
+author: Lorenzo Basso
+summary: Take a quick tour of the main functionality of the Svelte framework to build blazing fast reactive applications.
+---
+
+<script>
+
+    import bench from "../../images/framework-benchmark.png"
+    import ExampleOutput from "$lib/ExampleOutput.svelte"
+    import Quote from "$lib/Quote.svelte"
+
+    import HelloWorld from "$lib/svelte-tour/HelloWorld.svelte"
+    import Reactive from "$lib/svelte-tour/Reactive.svelte"
+    import GreetAll from "$lib/svelte-tour/GreetAll.svelte"
+</script>
+
+_Some intro_
+
+<div class='info'>
+    <p><strong>Useful knowledge</strong></p>
+    This article will make the most sense if you have some familiarity with HTML, CSS, and JavaScript.
+    <br/>
+    If you are totally new to web development it would be best to read through some introductory material before coming back to Svelte.
+    Experience with other frameworks might help to better frame the concepts presented, but is not required.
+</div>
+
+Another framework??
+
+<aside style='width: 200px'>
+Yes, we'll count React among the frameworks... blasphemy I know
+</aside>
+
+If you are like me, that's the first thought you had when you heard the name [Svelte](https://svelte.dev/).
+With a plethora of mature options to build your web applications with, there hardly seems to be the need for another component framework.
+
+But Svelte is different. Don't roll your eyes just yet, it really is.
+
+Component frameworks are widely beloved by developers who can use them to write easy-to-understand declarative code without worrying about low level DOM manipulations.
+This abstraction, however, comes at a price.
+
+Updates to the browser DOM are orchestrated through a virtual DOM, an in-memory structure the browser uses to decide when to update each element.
+Beside the increase in bundle size that comes with the framework, the runtime also has a performance cost as the browser has to do extra work to figure out what elements need updating and what don't.
+
+If you have some experience with traditional frameworks, you will have likely experienced some performance bottlenecks with components updating unecessarily and had to
+resort to a more manual approach to DOM updates.
+
+<div class='code-label'>Control component updates in React</div>
+
+```js
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.show !== this.props.show;
+    }
+
+    // or
+
+    const Modal = React.memo(
+        props => {...},
+        (prevProps, nextProps) => prevProps.show === nextProps.show
+    );
+```
+
+<aside >
+See the <a href="https://svelte.dev/blog/svelte-3-rethinking-reactivity" target="_blank" rel="noopener noreferrer">original</a> blog post for more
+</aside>
+
+Svelte, on the other hand, moves the entire update logic to the compiler, shipping highly optimised imperative code to the browser.
+This means that all your components will only update when they have to, without any runtime overhead resulting in fast and lean applications.
+
+<img src={bench} />
+
+The difference is most clearly seen when comparing Svelte against other popular frameworks.
+
+[krausest.github.io](https://krausest.github.io/js-framework-benchmark/current.html) compiles a comprehensive list of framework benchmarks and Svelte is consistently amongs the more performant,
+only behind hand-crafted vanilla JavaScript.
+
+If the promise of a faster, leaner framework sounds sounds appealing to you, then Svelte is a fun option for you to try out.
+
+## The Zen of Svelte
+
+In his talk "[Rethinking reactivity](https://www.youtube.com/watch?v=AdNJ3fydeao)", Rich Harris outlines the main driving principle behind the creation of Svelte.
+
+<Quote from="Rich Harris, creator of Svelte">
+    Frameworks are not tools for organising your code, they are tools for organising your mind
+</Quote>
+
+<aside style='width: 150px'>
+The name <a href='https://www.merriam-webster.com/dictionary/svelte'>Svelte</a> was chosen for his meaning: nimble, sleek
+</aside>
+
+In other words, frameworks should not exist to help the browser run code, but rather the programmer in writing, and reading, it.
+They are a tool to promote a better organised codebase, resulting in faster development and better products.
+A good framework makes it easy to reason about a complex problem, while getting out of the way when performance is needed.
+
+This principle has proven to be a powerful driving force in the development of Svelte towards a cleaner, more nimble, one might say "[svelte](https://www.merriam-webster.com/dictionary/svelte)" design.
+
+It seems to me that the result is a framework that values: simplicity, reactivity, composability, and accessibility.
+
+<div class='info'>
+    <p></p>
+    You can play around with the following code in the official <a href='https://svelte.dev/repl/hello-world?version=3'>REPL</a> or just look at the interactive examples below.
+</div>
+
+## Simplicity
+
+Frameworks should not impose cumbersome boilerplate or ad-hoc syntax on the programmer.
+Rather, they should do as much as possible with the most widely spread tools.
+In the case of web development, these are HTML, CSS, and JavaScript.
+
+For this reason, the syntax is a superset of HTML.
+Anyone familiar with the latter will recognise the main structure of a Svelte file.
+
+<div class='code-label'>
+REPL
+</div>
+
+```html
+<script>
+	let name = 'world';
+</script>
+
+<p>Hello {name}!</p>
+
+<style>
+	p {
+		color: green;
+		text-decoration: underline;
+		text-align: center;
+		font-size: 30px;
+	}
+
+	.unused {
+		background-color: red;
+	}
+</style>
+```
+
+<ExampleOutput>
+    <HelloWorld />
+</ExampleOutput>
+
+The page layout is described with HTML markup at the root of the component.
+Interactivity is provided with component-level JavaScript.
+Pure CSS is used for the styling, although one could use sass or less by configuring the right plugins.
+
+It's important to note that the the CSS is scope-limited to the component it's defined in by generating specific class names at compile time.
+
+<div class='code-label'>
+    CSS generated for the code above
+</div>
+
+```CSS
+h1.svelte-1rw0m6j {
+    color:green;
+    text-decoration:underline;
+    text-align:center
+}
+```
+
+Note that the `.unused` class does not appear in the bundled code, as the compiler correctly pruned it after warning us about unused code.
+
+This approach makes it easier to style a component without worrying about style leakage, unpredictable cascades, write-only CSS sheets, or having to follow un-enforcable naming conventions for your class names.
+
+By mixing HTML, CSS, and JavaScript we are violating the separation of concerns, you might say.
+
+That is true, from a certain point of view.
+However, all three parts, refer to the same "`Hello World!`" message, fully disentangling them is impossible.
+Understanding the behaviour of the component would require looking at three different files, if we were to follow this definition of separation of concerns.
+
+Svelte, like other frameworks before it, chooses to present them together.
+The developer then only needs to understand a single HTML-like file to comprehend the behaviour.
+
+Using a superset of HTML has the secondary benefit of being simpler to understand at a glance compared to, for example, `.jsx`.
+This is particularly important for users that are not full time developer, but have basic familiarity with the syntax of the web, such as designers or project managers.
+They can productively discuss a website's layout with the development team without having to first try to understand more specialised syntax.
+This lowers the framework's barrier to entry and encourages active cooperation within the team.
+
+Basing the format on HTML, however, deprives Svelte of loops and conditional when dealing with dynamic layout.
+To solve this, the framework introduces some custom syntax.
+
+<div class='code-label'>
+    Svelte-specific syntax
+</div>
+
+```
+{#if condition1}
+    markdown if condition is true
+{:else if condition2}
+    markdown if condition is false and condition2 is true
+{:else}
+    markdown if both conditions are false
+{/if}
+
+{#each users as user}
+    markdown for each user
+{/each}
+
+{#each users as user (user.id)}
+    markdown for each user, keyed by user id
+{/each}
+
+{#await promise}
+    markdown to show while waiting
+{:then result}
+    markdown to show result
+{:catch error}
+    markdown to show when the promise is rejected
+{/catch}
+
+Hello {na
+```
+
+That's it. This is the only Svelte-specific syntax you need to learn.
+This and standard HTML, CSS, and JavaScript are all you need to craft a beautiful, modern web application.
+
+## Reactivity
+
+Svelte would be a rather poor framework if it did not allow us to react to user's interactions.
+Let us look at a small example of how Svelte handles value changes and dependent values.
+
+<div class='code-label'>
+    Reactive code in Svelte
+</div>
+
+```svelte
+<script>
+	let message = '';
+
+	$: reverse = message.split('').reverse().join('');
+
+	const handleClear = () => {
+		message = '';
+	};
+</script>
+
+<input type="text" placeholder="Write your message here" bind:value={message} />
+<button on:click={handleClear}>Clear</button>
+
+<p>
+	You wrote: &quot;{message}&quot;
+</p>
+
+<p>
+	But I am Leonardo... so I wrote: &quot;{reverse}&quot;
+</p>
+```
+
+<ExampleOutput>
+    <Reactive />
+</ExampleOutput>
+
+Okay, lots going on here. Let's first look at how we can store user input and visualise it within a component.
+
+Data is stored in normal javascript variables, declared within the `script` tag.
+
+```svelte
+<script>
+	let message = '';
+
+	// ...ignore the rest for now
+</script>
+```
+
+We now need some way to declare that the value of `message` should reflect the content of the input field. It should be bound to it, if you will.
+And would you look at that, it's exactly the syntax svelte uses.
+
+```svelte
+<input type="text" bind:value={message} />
+```
+
+Now the value of message will be automatically changed whenever the input field is modified.
+No hooks and no callbacks are necessary.
+The same approach will work with all inputs, and custom components as well, keeping the code clear and simple in true Svelte fashion.
+
+In a similar fashion, we can bind events of each component to a callback function and perform more complex calculations that way.
+
+```svelte
+<button on:click={handleClear}>Clear</button>
+```
+
+As you have probably noticed in the previous example, displaying the value withing an HTML tag is also straightforwad:
+
+```svelte
+<p>You wrote: {message}</p>
+```
+
+There is nothing particularly new here, if you are familiar with the syntax from other frameworks.
+
+Now for the true differentiator in Svelte's reactivity, creating dependent values.
+These are defined as values that can be calculated directly from others within the component.
+So no user interaction is needed.
+
+In React, for example, one might write:
+
+<div class='code-label'>
+Reactive code in React
+</div>
+
+```js
+const reversed = message.split('').reverse().join('');
+```
+
+Every time the component is re-rendered the value is calculated anew and the correctly reversed message is displayed on screen.
+In Svelte this would not work.
+
+Remember that one of the key point of the framework is the elimination of the virtual DOM.
+This means there are no continued re-renders at runtime.
+Our application is faster as a result, but this also means that `reversed` is calculated once only as the component is first rendered.
+Looking at the example above we find a peculiar syntax.
+
+<div class='code-label'>
+Reactive code in Svelte
+</div>
+
+```js
+$: reversed = message.split('').reverse().join('');
+```
+
+This coopts the little-known [label](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label)
+syntax in JavaScript to tell the compiler that `reversed` depends on the value of `message` through the given calculation and
+should be recomputed every time `message` changes.
+
+## Composability
+
+We finally are at the "Component" part of "Component framework".
+To reduce the amount of code written and encourage reuse, svelte apps are created by composing smaller pieces.
+Each one is declared in a separate `Name.svelte` file and begins with a capital letter.
+Unlike some other frameworks, each svelte component is automatically made the default export of the corresponding file, so there is no need to export it ourselves.
+
+<div class='code-label'>
+GreetPerson.svelte
+</div>
+
+```svelte
+<script>
+	export let name = '';
+</script>
+
+{#if name}
+	<p>Hello {name}!</p>
+{/if}
+```
+
+<div class='code-label'>
+GreetAll.svelte
+</div>
+
+```svelte
+<script>
+	import GreetPerson from './GreetPerson.svelte';
+
+	let names = '';
+	$: splitNames = names.split(',');
+
+	const handleClear = () => {
+		names = '';
+	};
+</script>
+
+<p>Enter a comma-separated list of people I should greet:</p>
+
+<div>
+	<input type="text" placeholder="e.g., John Doe,Betty Smith" bind:value={names} />
+	<button on:click={handleClear}>Clear</button>
+</div>
+
+{#each splitNames as name}
+	<GreetPerson {name} />
+{/each}
+```
+
+<ExampleOutput>
+    <GreetAll />
+</ExampleOutput>
+
+Our `GreetAll` component, makes use of what we have learned so far to get a comma separated list of names from the user and, for each one, render the corresponding `GreetPerson` component.
+This is treated in the code as though it were a standard HTML tag.
+The `name` value is passed as a prop.
+
+```html
+<GreetPerson name="{name}" />
+```
+
+or, more concisely
+
+```html
+<GreetPerson {name} />
+```
+
+A component's interface is declared by exporting the relevant variables, which will be set when using it:
+
+```svelte
+<script>
+	export let name = '';
+</script>
+```
+
+This strategy allows us to keep components small and readable, while maximising code reuse.
+
+## Accessibility
+
+One of the pillars of Svelte is accessibility, for users and developers alike.
+The compiler has a first-class integration with [a11y](https://www.a11yproject.com/),
+which generates warnings whenever an app does not conform to basic accessibility standards.
+
+For example, any `img` tag without a corresponding `alt` attribute will generate a warning.
+The code will still compile and run, but all accessibility issues will be visible at compile time.
+
+Following these basic guidelines will make it easier for all users to access you application, and create a more inclusive environment for everyone.
+
+## Managing state
+
+## Recap
+
+## Where to go from here

@@ -16,11 +16,6 @@
 
 	a {
 		color: inherit;
-		text-decoration: none;
 		margin-right: 0.25rem;
-	}
-
-	a:hover {
-		text-decoration: underline;
 	}
 </style>
