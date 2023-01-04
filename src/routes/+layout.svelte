@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Footer from '$lib/layout/Footer.svelte';
 	import Header from '$lib/layout/Header.svelte';
 	import { keywords } from '$lib/metadata';
@@ -9,7 +9,7 @@
 	<meta name="keywords" content={keywords.join(', ')} />
 </svelte:head>
 
-<main class="h-full flex flex-col">
+<main class="h-full flex flex-col text-surface-on dark:text-surface-dark-on">
 	<Header />
 
 	<div class="flex-1">

@@ -6,4 +6,11 @@
 	$: active = $page.url.pathname.toLowerCase() === to.toLowerCase();
 </script>
 
-<a>cya</a>
+<a href={to} class:active class="my-auto"><slot>{to}</slot></a>
+
+<style>
+	.active {
+		opacity: 90%;
+		border-bottom: solid 1px;
+	}
+</style>

@@ -1,6 +1,13 @@
 const colors = require('tailwindcss/colors');
 
-const { emerald: primary } = colors;
+const {
+	emerald: primary,
+	violet: secondary,
+	red: error,
+	amber: warn,
+	sky: info,
+	slate: surface
+} = colors;
 
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -9,93 +16,75 @@ const config = {
 		extend: {
 			colors: {
 				primary: {
-					50: primary[50],
-					100: primary[100],
-					200: primary[200],
-					300: primary[300],
-					400: primary[400],
-					500: primary[500],
-					600: primary[600],
-					700: primary[700],
-					800: primary[800],
-					900: primary[900],
-					DEFAULT: primary[500],
-					on: primary[50],
+					DEFAULT: primary[400],
+					d: primary[500],
+					l: primary[300],
+					on: primary[900],
 					dark: {
-						DEFAULT: primary[300],
-						on: primary[800]
+						DEFAULT: primary[700],
+						d: primary[800],
+						l: primary[600],
+						on: primary[100]
 					}
 				},
 				secondary: {
-					50: '#f4fbfa',
-					100: '#e9f6f5',
-					200: '#c9e9e6',
-					300: '#a8dbd7',
-					400: '#67c1b8',
-					500: '#26a69a',
-					600: '#22958b',
-					700: '#1d7d74',
-					800: '#17645c',
-					900: '#13514b',
-					DEFAULT: '#26a69a', //500
-					on: '#f4fbfa', //50
+					DEFAULT: secondary[400],
+					d: secondary[500],
+					l: secondary[300],
+					on: secondary[900],
 					dark: {
-						DEFAULT: '#a8dbd7', //300
-						on: '#17645c' //800
-					}
-				},
-				tertiary: {
-					50: '#faf4fb',
-					100: '#f5e9f7',
-					200: '#e6c9eb',
-					300: '#d7a9df',
-					400: '#ba68c8',
-					500: '#9c27b0',
-					600: '#8c239e',
-					700: '#751d84',
-					800: '#5e176a',
-					900: '#4c1356',
-					DEFAULT: '#9c27b0', //500
-					on: '#faf4fb', //50
-					dark: {
-						DEFAULT: '#d7a9df', //300
-						on: '#5e176a' //800
+						DEFAULT: secondary[700],
+						d: secondary[800],
+						l: secondary[600],
+						on: secondary[100]
 					}
 				},
 				error: {
-					50: '#fcf2f3',
-					100: '#f9e6e8',
-					200: '#f0bfc5',
-					300: '#e699a1',
-					400: '#d44d5b',
-					500: '#c10015',
-					600: '#ae0013',
-					700: '#910010',
-					800: '#74000d',
-					900: '#5f000a',
-					DEFAULT: '#c10015', //500
-					on: '#fcf2f3', //50
+					DEFAULT: error[300],
+					d: error[400],
+					l: error[200],
+					on: error[900],
 					dark: {
-						DEFAULT: '#e699a1', //300
-						on: '#74000d' //800
+						DEFAULT: error[800],
+						d: error[800],
+						l: error[600],
+						on: error[200]
+					}
+				},
+				warn: {
+					DEFAULT: warn[300],
+					d: warn[400],
+					l: warn[200],
+					on: warn[900],
+					dark: {
+						DEFAULT: warn[800],
+						d: warn[800],
+						l: warn[600],
+						on: warn[200]
+					}
+				},
+				info: {
+					DEFAULT: info[300],
+					d: info[400],
+					l: info[200],
+					on: info[900],
+					dark: {
+						DEFAULT: info[800],
+						d: info[800],
+						l: info[600],
+						on: info[200]
 					}
 				},
 				surface: {
-					50: colors.gray[50],
-					100: colors.gray[100],
-					200: colors.gray[200],
-					300: colors.gray[300],
-					400: colors.gray[400],
-					500: colors.gray[500],
-					600: colors.gray[600],
-					700: colors.gray[700],
-					800: colors.gray[800],
-					900: colors.gray[900],
-					DEFAULT: colors.gray[50], //50
-					on: colors.gray[900], //900
+					DEFAULT: surface[200],
+					d: surface[300],
+					l: surface[100],
+					on: surface[900],
 					dark: {
-						DEFAULT: colors.gray[900], //900
-						on: colors.gray[50] //50
+						DEFAULT: surface[900],
+						d: surface[900],
+						l: surface[700],
+						on: surface[100]
 					}
 				}
 			}
