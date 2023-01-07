@@ -9,8 +9,7 @@
 		<a href="/" class="hover:cursor-pointer"><h2 class="text-2xl font-semibold">{title}</h2></a>
 		<div class="flex gap-4">
 			<nav class="flex gap-2  align-middle">
-				<NavLink to="/">Home</NavLink>
-				<NavLink to="/about">About</NavLink>
+				<NavLink to="/blog">Blog</NavLink>
 			</nav>
 			<DarkMode />
 		</div>
