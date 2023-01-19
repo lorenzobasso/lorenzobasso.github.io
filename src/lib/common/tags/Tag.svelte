@@ -25,7 +25,7 @@
 			query.delete('tag');
 		}
 
-		goto(`?${query.toString()}`);
+		goto(`/blog?${query.toString()}`);
 	};
 </script>
 

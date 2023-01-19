@@ -12,7 +12,7 @@
 <main class="h-full flex flex-col text-surface-on dark:text-surface-dark-on">
 	<Header />
 
-	<div class="flex-1 w-full max-w-4xl mx-auto">
+	<div class="flex-1 w-full max-w-3xl mx-auto">
 		<slot />
 	</div>
 

@@ -4,7 +4,7 @@ title: The purpose of this blog
 date: 2019-03-08
 description: 'Why does it exist?'
 tags: [Meta]
-author: 'Unknown'
+# author: 'Lorenzo Basso'
 ---
 
 There are many developer blogs out there, probably because developers like to ramble about the tech they enjoy. I'm guilty of that too! This blog was created mainly for that - sharing about development stuff that I like or that I'm learning.

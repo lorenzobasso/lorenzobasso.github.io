@@ -1,0 +1,43 @@
+article#markdown-content {
+	@apply flex flex-col gap-3;
+
+	h2 {
+		@apply text-2xl mt-4 font-bold;
+	}
+
+	h3 {
+		@apply text-xl mt-2 font-semibold;
+	}
+
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		a {
+			@apply ml-2 text-gray-400/50;
+
+			&:hover {
+				@apply text-primary-d dark:text-primary-l underline;
+				transition: 0.2s ease-in-out;
+			}
+		}
+	}
+
+	p a {
+		@apply text-primary-d dark:text-primary-l;
+
+		&:hover {
+			@apply underline;
+		}
+	}
+
+	// This selector only includes inline code snippets, not the code blocks
+	code:not([class^='language-']) {
+		@apply bg-surface-d dark:bg-surface-dark-l py-1 px-2 rounded-sm;
+	}
+
+	ul {
+		@apply list-disc list-inside pl-4 gap-2 flex flex-col;
+	}
+}

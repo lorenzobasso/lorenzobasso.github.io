@@ -14,6 +14,7 @@ const config = {
 		vitePreprocess(),
 		preprocess({
 			postcss: true,
+			scss: true,
 			preserve: ['module']
 		}),
 		mdsvex({

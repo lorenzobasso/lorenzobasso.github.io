@@ -4,5 +4,4 @@
 	export let data: PageData;
 </script>
 
-<!-- <div>{JSON.stringify(data)}</div> -->
 <svelte:component this={data.page} />
