@@ -8,5 +8,5 @@ export const load: PageServerLoad = ({ url: { searchParams } }) => {
 	const shouldShowPost = (post: RenderedPost) =>
 		post.tags.some(tag => activeTags.length === 0 || activeTags.includes(formatTagForUrl(tag)));
 
-	return { posts: posts.filter(shouldShowPost) };
+	return { posts };
 };

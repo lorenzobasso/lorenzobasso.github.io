@@ -1,31 +1,32 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 	import { formatTagForUrl, getAllActiveTags, isTagActive } from './tag';
 
 	export let tag: string;
 
-	$: ({
-		url: { searchParams }
-	} = $page);
+	let searchParams: URLSearchParams | undefined = undefined;
+
 	$: encodedTag = formatTagForUrl(tag);
 	$: selectedTags = getAllActiveTags(searchParams);
 	$: active = isTagActive(tag, searchParams);
 
+	onMount(() => (searchParams = new URLSearchParams(window.location.search)));
+
 	const handleClick = () => {
-		const query = new URLSearchParams(searchParams.toString());
+		if (searchParams) {
+			const newTags = active
+				? selectedTags.filter(t => t !== encodedTag)
+				: [...selectedTags, encodedTag];
 
-		const newTags = active
-			? selectedTags.filter(t => t !== encodedTag)
-			: [...selectedTags, encodedTag];
+			if (newTags.length) {
+				searchParams.set('tag', newTags.join(','));
+			} else {
+				searchParams.delete('tag');
+			}
 
-		if (newTags.length) {
-			query.set('tag', newTags.join(','));
-		} else {
-			query.delete('tag');
+			goto(`/blog?${searchParams.toString()}`);
 		}
-
-		goto(`/blog?${query.toString()}`);
 	};
 </script>
 

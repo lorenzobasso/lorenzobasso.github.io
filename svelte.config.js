@@ -40,8 +40,11 @@ const config = {
 	],
 	extensions,
 	kit: {
-		adapter: adapter()
-	}
+		// prerender: { default: true },
+		adapter: adapter(),
+		paths: { base: '' }
+	},
+	target: '#svelte'
 };
 
 export default config;
