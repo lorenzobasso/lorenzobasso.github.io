@@ -17,7 +17,7 @@ const config = {
 			pages: 'docs',
 			assets: 'docs',
 		}),
-		paths: { base: dev ? '' : '' },
+		paths: { base: dev ? '' : '/lorenzobasso.github.io' },
 		appDir: 'internal',
 	},
 	preprocess: [
