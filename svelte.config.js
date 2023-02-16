@@ -14,10 +14,10 @@ const dev = process.argv.includes('dev')
 const config = {
 	kit: {
 		adapter: adapter({
-			pages: 'docs',
-			assets: 'docs',
+			pages: './docs',
+			assets: './docs',
 		}),
-		paths: { base: dev ? '' : '/lorenzobasso.github.io' },
+		paths: { base: dev ? '' : '' },
 		appDir: 'internal',
 	},
 	preprocess: [
