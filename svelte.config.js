@@ -14,8 +14,8 @@ const dev = process.argv.includes('dev')
 const config = {
 	kit: {
 		adapter: adapter({
-			pages: './docs',
-			assets: './docs',
+			pages: 'docs',
+			assets: 'docs',
 		}),
 		paths: { base: dev ? '' : '' },
 		appDir: 'internal',
@@ -57,7 +57,7 @@ const config = {
 			},
 		},
 	},
-	target: '#svelte',
+	// target: '#svelte',
 }
 
 export default config
