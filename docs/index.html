@@ -5,37 +5,44 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<base href="./" />
-		<meta http-equiv="content-security-policy" content="">
-		<link href="./internal/immutable/assets/_layout-05ec0fbc.css" rel="stylesheet">
-		<link rel="modulepreload" href="./internal/immutable/start-d955efbc.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/index-65bc829e.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/singletons-9dd7f8c2.js">
-		<link rel="modulepreload" href="./internal/immutable/components/pages/_layout.svelte-6eeafa1a.js">
-		<link rel="modulepreload" href="./internal/immutable/modules/pages/_layout.ts-9cbb603b.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="./internal/immutable/components/pages/_page.svelte-60e79087.js">
+		
+		<link href="./internal/immutable/assets/0.761c4b94.css" rel="stylesheet">
+		<link rel="modulepreload" href="./internal/immutable/entry/start.e2beefa3.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/index.6dba6488.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/singletons.ff520828.js">
+		<link rel="modulepreload" href="./internal/immutable/entry/app.b4787216.js">
+		<link rel="modulepreload" href="./internal/immutable/nodes/0.3bacbf32.js">
+		<link rel="modulepreload" href="./internal/immutable/nodes/2.cc512561.js">
 	</head>
 	<body data-theme="skeleton">
 		<div style="display: contents" class="h-full overflow-hidden">
+<div class="container h-full mx-auto flex justify-center items-center"><h1>Under construction...</h1></div>
 
-<div class="container h-full mx-auto flex justify-center items-center"><h1>Let&#39;s get cracking bones!</h1></div>
+			
+			<script>
+				{
+					__sveltekit_1802xn6 = {
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
 
-		<script type="module" data-sveltekit-hydrate="69omit">
-			import { start } from "./internal/immutable/start-d955efbc.js";
+					const element = document.currentScript.parentElement;
 
-			start({
-				assets: "",
-				env: {},
-				target: document.querySelector('[data-sveltekit-hydrate="69omit"]').parentNode,
-				version: "1676586218972",
-				hydrate: {
-					node_ids: [0, 2],
-					data: [null,null],
-					form: null,
-					error: null
+					const data = [null,null];
+
+					Promise.all([
+						import("./internal/immutable/entry/start.e2beefa3.js"),
+						import("./internal/immutable/entry/app.b4787216.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2],
+							data,
+							form: null,
+							error: null
+						});
+					});
 				}
-			});
-		</script>
-	</div>
+			</script>
+		</div>
 	</body>
 </html>
